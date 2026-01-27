@@ -1,4 +1,4 @@
-![Screenshot](https://raw.githubusercontent.com/DemonBunnyBon/PlantHarvestTweaker/refs/heads/main/PHT_Thumb.png)
+![Screenshotie](https://raw.githubusercontent.com/DemonBunnyBon/ModListJson/refs/heads/main/THUMB_PHT.jpg)
 # Plant Harvest Tweaker
 
 
