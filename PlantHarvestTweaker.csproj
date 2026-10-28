@@ -1,52 +1,99 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE (unless you know 100% what you are changing)-->
-	<!-- Further info: This defines critical project details, like the net version, C# language version, null enable and do not generate assembly info (we need a custom one) -->
+	<PropertyGroup>
+		<!--This needs to be changed for the mod to compile.-->
+		<TheLongDarkPath>G:/Steam/steamapps/common/TheLongDark</TheLongDarkPath>
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<!-- Debug is useless for a mod -->
-		<DebugType>none</DebugType>
+		<DebugType>embedded</DebugType>
 	</PropertyGroup>
-	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE -->
 
 	<PropertyGroup>
-		<!-- This should point to wherever your games primary EXE is -->
-		<TheLongDarkPath>/home/marcy/.local/share/Steam/steamapps/common/TheLongDark</TheLongDarkPath>
-		<ReleaseFolderPath>/home/marcy/Documents/TLD Stuff/TLDMod/Release</ReleaseFolderPath>
+		<MelonLoaderPath>$(TheLongDarkPath)/MelonLoader/net6</MelonLoaderPath>
+		<ManagedPath>$(TheLongDarkPath)/MelonLoader/Managed</ManagedPath>
+		<Il2CppPath>$(TheLongDarkPath)/MelonLoader/Il2CppAssemblies</Il2CppPath>
+		<ModsPath>$(TheLongDarkPath)/Mods</ModsPath>
+		<AssemblySearchPaths>$(AssemblySearchPaths);$(MelonLoaderPath);$(ManagedPath);$(Il2CppPath);$(ModsPath);</AssemblySearchPaths>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
-
-	<!-- List of used references -->
 	<ItemGroup>
-		<!-- This is the base reference. MUST EXIST -->
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.51.0" />
-		<!-- This is only if you use the ModSettings -->
+		<Reference Include="Il2CppInterop.Common">
+			<HintPath>G:\Steam\steamapps\common\TheLongDark\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>G:\Steam\steamapps\common\TheLongDark\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader" />
+		<Reference Include="0Harmony" />
+		<Reference Include="Assembly-CSharp" />
+		<Reference Include="Il2CppHOTween" />
+		<Reference Include="Il2Cppmscorlib" />
+		<Reference Include="Il2CppNewtonsoft.Json" />
+		<Reference Include="Il2CppSystem.Configuration" />
+		<Reference Include="Il2CppSystem" />
+		<Reference Include="Il2CppSystem.Runtime.Serialization" />
+		<Reference Include="Il2CppTLD.Addressables" />
+		<Reference Include="Il2CppTLD.Encryption" />
+		<Reference Include="Il2CppTLD.Game.Events.Runtime" />
+		<Reference Include="Il2CppTLD.GameplayTag" />
+		<Reference Include="Il2CppTLD.IO" />
+		<Reference Include="Il2CppTLD.Logging" />
+		<Reference Include="Il2CppTLD.OptionalContent" />
+		<Reference Include="Il2CppTLD.PDID" />
+		<Reference Include="Il2CppTLD.Platform" />
+		<Reference Include="Il2CppTLD.Profiling" />
+		<Reference Include="Il2CppTLD.RuntimeTest" />
+		<Reference Include="Il2CppTLD.SaveState" />
+		<Reference Include="Il2CppTLD.Serialization" />
+		<Reference Include="Il2CppTLD.Stats" />
+		<Reference Include="Il2CppTLD.TimeLib" />
+		<Reference Include="Il2CppTLD.Trial" />
+		<Reference Include="Il2CppTLD.UserGeneratedContent" />
+		<Reference Include="Il2CppTLD.IntBackedUnit" />
+		<Reference Include="Unity.Mathematics" />
+		<Reference Include="Unity.TextMeshPro" />
+		<Reference Include="UnityEngine.AssetBundleModule" />
+		<Reference Include="UnityEngine.CoreModule_Funky"/>
+		<Reference Include="UnityEngine" />
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>..\..\..\..\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule" />
+		<Reference Include="UnityEngine.InputModule" />
+		<Reference Include="UnityEngine.Il2CppAssetBundleManager" />
+		<Reference Include="UnityEngine.Il2CppImageConversionManager" />
+		<Reference Include="UnityEngine.UI">
+			<HintPath>..\..\..\..\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIElementsModule">
+			<HintPath>..\..\..\..\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIElementsNativeModule">
+			<HintPath>..\..\..\..\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsNativeModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>..\..\..\..\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Addressables">
+			<HintPath>G:\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.ResourceManager">
+			<HintPath>G:\Steam\steamapps\common\TheLongDark\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Waltz.Modding.TLD.Il2CppAssemblies.Windows" Version="2.52.0" />
+		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.3" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
 	</ItemGroup>
-
-	<!-- Most commonly used using's. Add to this so you dont need to define them in the cs files -->
-	<ItemGroup>
-		<Using Include="System.Reflection" />
-		<Using Include="System.Diagnostics.CodeAnalysis" />
-		<Using Include="Il2Cpp" />
-		<Using Include="HarmonyLib" />
-		<Using Include="MelonLoader" />
-		<Using Include="UnityEngine" />
-		<!-- Only if your using ModSettings -->
-		<Using Include="ModSettings" />
-
-	</ItemGroup>
-
-	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<!-- This copies the mods files to the games mod dir -->
-		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
-		<!-- This copies the mods files to a designated release folder. Speeds up finding the dll after a build -->
-		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseFolderPath)" />
-	</Target>
-
 </Project>

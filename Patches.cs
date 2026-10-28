@@ -1,5 +1,6 @@
 ﻿using MelonLoader;
 using UnityEngine;
+using HarmonyLib;
 using Il2CppInterop;
 using Il2CppInterop.Runtime.Injection;
 using System.Collections;
@@ -79,10 +80,11 @@ namespace PlantHarvestTweaker
             {
                 GameObject[] NoToolsArray = [];
                 List<GameObject> fulllist = new List<GameObject>();
+                List<GameObject> extralist = new List<GameObject>();
                 GameObject[] KnifeArray = [Addressables.LoadAssetAsync<GameObject>("GEAR_Knife").WaitForCompletion(), Addressables.LoadAssetAsync<GameObject>("GEAR_KnifeImprovised").WaitForCompletion()];
                 GameObject[] DLCKnifeArray = [];
                 GameObject[] CTKnifeArray = [];
-                if (GearItem.LoadGearItemPrefab("GEAR_JeremiahKnife") != null)
+                if (Addressables.LoadAssetAsync<GameObject>("GEAR_JeremiahKnife").WaitForCompletion() != null)
                 {
                     CTKnifeArray = [Addressables.LoadAssetAsync<GameObject>("GEAR_JeremiahKnife").WaitForCompletion(), Addressables.LoadAssetAsync<GameObject>("GEAR_KnifeScrapMetal").WaitForCompletion()];
                     fulllist.AddRange(CTKnifeArray);
@@ -96,8 +98,16 @@ namespace PlantHarvestTweaker
                 }
                 KnifeArray = fulllist.ToArray();
                 GameObject[] HatchetArray = [Addressables.LoadAssetAsync<GameObject>("GEAR_Hatchet").WaitForCompletion(), Addressables.LoadAssetAsync<GameObject>("GEAR_HatchetImprovised").WaitForCompletion(), Addressables.LoadAssetAsync<GameObject>("GEAR_Hacksaw").WaitForCompletion()];
-                GameObject[] ExtraArray = [GearItem.LoadGearItemPrefab("GEAR_Prybar").gameObject];
+                GameObject[] ExtraArray = [Addressables.LoadAssetAsync<GameObject>("GEAR_Prybar").WaitForCompletion()];
+                GameObject[] BTHatchetArray = [];
                 GameObject[] ToolArray = [];
+                if (Addressables.LoadAssetAsync<GameObject>("GEAR_SplittingAxe").WaitForCompletion() != null)
+                {
+                    BTHatchetArray = [Addressables.LoadAssetAsync<GameObject>("GEAR_SplittingAxe").WaitForCompletion(), Addressables.LoadAssetAsync<GameObject>("GEAR_SurvivalHatchet").WaitForCompletion()];
+                    extralist.AddRange(HatchetArray);
+                    extralist.AddRange(BTHatchetArray);
+                }
+                HatchetArray = extralist.ToArray();
                 fulllist = new List<GameObject>();
                 fulllist.AddRange(HatchetArray);
                 fulllist.AddRange(KnifeArray);
